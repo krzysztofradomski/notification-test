@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>wow</title>
+</head>
+<style>
+  section {
+    display: block;
+    width: 400px;
+    margin: 1 rem auto;
+    background: azure;
+  }
+</style>
+
+<body>
+
+  <section>
+      <h1>wow 2 ⭐️</h1>
+  <p>it works 🎉</p>
+  <button id="event-button">trigger custom event</button>
+  <p>this is a simple vanilla js app created on codepen wow</p>
+  </section>
+  <script>
+    (function() {
+      const btn = document.getElementById("event-button");
+      const triggerEvent = () => {
+        const note = new CustomEvent("notification-trigger", {
+          bubbles: true,
+          detail: {
+            severity: "success",
+            summary: "triggered from codepen",
+            detail: "https://codepen.io/stronginarm/pen/LYBzdwm"
+          }
+        });
+        window.parent.postMessage("hello there!", "*");
+        // top.document.dispatchEvent(note);
+        alert("hello from codepen");
+      };
+      btn.addEventListener("click", triggerEvent);
+    })();
+  </script>
+</body>
+
+</html>
