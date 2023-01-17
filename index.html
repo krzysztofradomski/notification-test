@@ -32,8 +32,8 @@
           bubbles: true,
           detail: {
             severity: "success",
-            summary: "triggered from codepen",
-            detail: "https://codepen.io/stronginarm/pen/LYBzdwm"
+            summary: "triggered from github custom event",
+           detail: window.location.origin,
           }
         });
         top.document.dispatchEvent(note);
@@ -49,7 +49,7 @@
       const myPostMessage = () => {
         const detail = {
           severity: "success",
-          summary: "triggered from github",
+          summary: "triggered from github postMessage",
           detail: window.location.origin,
         }
         window.parent.postMessage(JSON.stringify(detail), "*")
