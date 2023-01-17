@@ -47,7 +47,12 @@
       const pm = document.getElementById("pm");
 
       const myPostMessage = () => {
-        window.parent.postMessage("hello there!", "*");
+        const detail = {
+          severity: "success",
+          summary: "triggered from github",
+          detail: window.location.origin,
+        }
+        window.postMessage(JSON.stringify(detail), "*")
         console.log("hello from github postmessage");
       };
       
