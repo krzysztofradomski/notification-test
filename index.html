@@ -18,13 +18,16 @@
   <section>
       <h1>wow 2 ⭐️</h1>
   <p>it works 🎉</p>
-  <button id="event-button">trigger custom event</button>
-  <p>this is a simple vanilla js app created on codepen wow</p>
+  <button id="ce">trigger CustomEvent</button>
+  <button id="pm">trigger  window.parent.postMessage</button>
+  <p>this is a simple vanilla js app github</p>
   </section>
   <script>
     (function() {
-      const btn = document.getElementById("event-button");
-      const triggerEvent = () => {
+      
+      const ce = document.getElementById("ce");
+
+      const triggerCustomEvent = () => {
         const note = new CustomEvent("notification-trigger", {
           bubbles: true,
           detail: {
@@ -33,11 +36,26 @@
             detail: "https://codepen.io/stronginarm/pen/LYBzdwm"
           }
         });
-        window.parent.postMessage("hello there!", "*");
-        // top.document.dispatchEvent(note);
-        alert("hello from codepen");
+        top.document.dispatchEvent(note);
+        console.log("hello from github customevent");
       };
-      btn.addEventListener("click", triggerEvent);
+
+      ce.addEventListener("click", triggerCustomEvent);
+      
+
+
+      const pm = document.getElementById("pm");
+
+      const myPostMessage = () => {
+        window.parent.postMessage("hello there!", "*");
+        console.log("hello from github postmessage");
+      };
+      
+      pm.addEventListener("click", myPostMessage);
+
+     
+      
+
     })();
   </script>
 </body>
