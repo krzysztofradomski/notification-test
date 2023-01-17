@@ -52,8 +52,8 @@
           summary: "triggered from github",
           detail: window.location.origin,
         }
-        window.postMessage(JSON.stringify(detail), "*")
-        console.log("hello from github postmessage");
+        window.parent.postMessage(JSON.stringify(detail), "*")
+        console.log("hello from github postmessage", JSON.stringify(detail));
       };
       
       pm.addEventListener("click", myPostMessage);
