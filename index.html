@@ -21,6 +21,7 @@
   <button id="ce">trigger CustomEvent</button>
   <button id="pm">trigger  window.parent.postMessage</button>
   <p>this is a simple vanilla js app github</p>
+  <p id="msg">...</p>
   </section>
   <script>
     (function() {
@@ -57,8 +58,23 @@
       };
       
       pm.addEventListener("click", myPostMessage);
+      
+      const msg = document.getElementById("msg")
+      
+      const handleMessageEvent = (event: Event) => {
+        const { message, data, origin } = event
+        // if (origin === allowedUrl) {
+        console.log({ message, data, origin })
+        try {
+          msg.textContent = data
+        } catch (e) {
+          console.log("error parsing message", e)
+        }
 
-     
+        // }
+      }
+
+      window.addEventListener("message", handleMessageEvent, false)
       
 
     })();
