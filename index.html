@@ -21,7 +21,7 @@
   <button id="ce">trigger CustomEvent</button>
   <button id="pm">trigger  window.parent.postMessage</button>
   <p>this is a simple vanilla js app github</p>
-  <p id="msg">...</p>
+  <p id="msg">....</p>
   </section>
   <script>
     (function() {
@@ -75,7 +75,7 @@
         // }
       }
 
-      window.addEventListener("message", handleMessageEvent, false)
+      window.parent.addEventListener("message", handleMessageEvent, false)
       
 
     })();
