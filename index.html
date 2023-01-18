@@ -59,9 +59,10 @@
       
       pm.addEventListener("click", myPostMessage);
       
+      
       const msg = document.getElementById("msg")
       
-      const handleMessageEvent = (event: Event) => {
+      const handleMessageEvent = (event) => {
         const { message, data, origin } = event
         // if (origin === allowedUrl) {
         console.log({ message, data, origin })
