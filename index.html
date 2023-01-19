@@ -18,64 +18,33 @@
   <section>
       <h1>wow 2 ⭐️</h1>
   <p>it works 🎉</p>
-  <button id="ce">trigger CustomEvent</button>
   <button id="pm">trigger  window.parent.postMessage</button>
   <p>this is a simple vanilla js app github</p>
   <p id="msg">....</p>
   </section>
   <script>
     (function() {
-      
-      const ce = document.getElementById("ce");
-
-      const triggerCustomEvent = () => {
-        const note = new CustomEvent("notification-trigger", {
-          bubbles: true,
-          detail: {
-            severity: "success",
-            summary: "triggered from github custom event",
-           detail: window.location.origin,
-          }
-        });
-        top.document.dispatchEvent(note);
-        console.log("hello from github customevent");
-      };
-
-      ce.addEventListener("click", triggerCustomEvent);
-      
-
 
       const pm = document.getElementById("pm");
 
       const myPostMessage = () => {
         const detail = {
+          type: "showNotification"
           severity: "success",
-          summary: "triggered from github postMessage",
+          summary: "triggered from github postMessage using window.__shellMsgApi",
           detail: window.location.origin,
         }
-        window.parent.postMessage(JSON.stringify(detail), "*")
+        window.__shellMsgApi.postExternalMessageFromChild(JSON.stringify(detail), "*")
         console.log("hello from github postmessage", JSON.stringify(detail));
       };
       
       pm.addEventListener("click", myPostMessage);
       
       
-      const msg = document.getElementById("msg")
+      const showMessageFromShell = txt => document.getElementById("msg").textContent = txt
       
-      const handleMessageEvent = (event) => {
-        const { message, data, origin } = event
-        // if (origin === allowedUrl) {
-        console.log({ message, data, origin })
-        try {
-          msg.textContent = data
-        } catch (e) {
-          console.log("error parsing message", e)
-        }
-
-        // }
-      }
-
-      window.addEventListener("message", handleMessageEvent, false)
+      window.__shellMsgApi.subscribeToMessages(showMessageFromShell)
+      
       
 
     })();
