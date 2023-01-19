@@ -2,12 +2,12 @@ const shellMsgApi = {
   postInternalMessage: (msg, targetOrigin) => {
     targetOrigin = targetOrigin || "*"
     console.log({ msg, targetOrigin })
-    window.parent.postMessage(msg, targetOrigin)
+    window.postMessage(msg, targetOrigin)
   },
   postExternalMessageFromChild: (msg, targetOrigin) => {
     targetOrigin = targetOrigin || "*"
     console.log({ msg, targetOrigin })
-    window.postMessage(msg, targetOrigin)
+    window.parent.postMessage(msg, targetOrigin)
   },
   postExternalMessageToChild: (msg, targetOrigin, iframe) => {
     targetOrigin = targetOrigin || "*"
