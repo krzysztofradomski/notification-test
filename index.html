@@ -4,7 +4,6 @@
 <head>
   <title>wow</title>
 </head>
-<script src="https://krzysztofradomski.github.io/notification-test/shellMsgApi.js"></script>
 <style>
   section {
     display: block;
@@ -21,7 +20,7 @@
   <p>it works 🎉</p>
   <button id="pm">trigger  window.parent.postMessage</button>
   <p>this is a simple vanilla js app github</p>
-  <p id="msg">....</p>
+  <p id="msg">...</p>
   </section>
   <script>
     (function() {
@@ -35,7 +34,7 @@
           summary: "triggered from github postMessage using window.__shellMsgApi",
           detail: window.location.origin,
         }
-        window.__shellMsgApi.postExternalMessageFromChild(JSON.stringify(detail), "*")
+        window.parent.__shellMsgApi.postExternalMessageFromChild(JSON.stringify(detail), "*")
         console.log("hello from github postmessage", JSON.stringify(detail));
       };
       
@@ -44,7 +43,7 @@
       
       const showMessageFromShell = txt => document.getElementById("msg").textContent = txt
       
-      window.__shellMsgApi.subscribeToMessages(showMessageFromShell)
+      window.parent.__shellMsgApi.subscribeToMessages(showMessageFromShell)
       
       
 
